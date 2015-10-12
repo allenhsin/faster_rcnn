@@ -1,4 +1,4 @@
-function nvmex(cuFileName, outDir)
+function nvmex(cuFileName, outDir, cuda_path)
 %NVMEX Compiles and links a CUDA file for MATLAB usage
 % NVMEX(FILENAME) will create a MEX-File (also with the name FILENAME) by
 % invoking the CUDA compiler, nvcc, and then linking with the MEX
@@ -18,13 +18,17 @@ if ispc % Windows
     end
     NVCC = 'nvcc';
 else % Mac and Linux (assuming gcc is on the path)
-    CUDA_INC_Location = '/usr/local/cuda/include';
-    CUDA_SAMPLES_Location = '/usr/local/cuda/samples/common/inc';
+%    CUDA_INC_Location = '/usr/local/cuda/include';
+    CUDA_INC_Location = [cuda_path '/include'];
+%    CUDA_SAMPLES_Location = '/usr/local/cuda/samples/common/inc';
+    CUDA_SAMPLES_Location = [cuda_path '/samples/common/inc'];
     Host_Compiler_Location = ' ';
     PIC_Option = ' --compiler-options -fPIC ';
     machine_str = [];
-    CUDA_LIB_Location = '/usr/local/cuda/lib64';
-    NVCC = '/usr/local/cuda/bin/nvcc';
+%    CUDA_LIB_Location = '/usr/local/cuda/lib64';
+    CUDA_LIB_Location = [cuda_path '/lib64'];
+%    NVCC = '/usr/local/cuda/bin/nvcc';
+    NVCC = [cuda_path '/bin/nvcc'];
 end
 % !!! End of things to modify !!!
 [~, filename] = fileparts(cuFileName);

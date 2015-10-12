@@ -11,6 +11,7 @@ $RECYCLE.BIN/
 # User Ingore
 models/
 data/
+bin/
 datasets/
 external/caffe/matlab
 output/
@@ -27,6 +28,10 @@ imdb/cache
 
 # Windows shortcuts
 *.lnk
+
+# iamge files 
+*.JPG
+*.jpg
 
 # =========================
 # Operating System Files

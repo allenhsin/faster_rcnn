@@ -1,4 +1,4 @@
-function faster_rcnn_build()
+function faster_rcnn_build(cuda_path)
 % faster_rcnn_build()
 % --------------------------------------------------------
 % Faster R-CNN
@@ -6,6 +6,10 @@ function faster_rcnn_build()
 % Licensed under The MIT License [see LICENSE for details]
 % --------------------------------------------------------
 
+if nargin < 1
+    error('Please specify path to CUDA root.');
+end
+    
 % Compile nms_mex
 if ~exist('nms_mex', 'file')
   fprintf('Compiling nms_mex\n');
@@ -20,7 +24,7 @@ end
 if ~exist('nms_gpu_mex', 'file')
    fprintf('Compiling nms_gpu_mex\n');
    addpath(fullfile(pwd, 'functions', 'nms'));
-   nvmex('functions/nms/nms_gpu_mex.cu', 'bin');
+   nvmex('functions/nms/nms_gpu_mex.cu', 'bin', cuda_path);
    delete('nms_gpu_mex.o');
 end
 
