@@ -33,6 +33,9 @@ imdb/cache
 *.JPG
 *.jpg
 
+# MATLAB auto-save
+*.*~
+
 # =========================
 # Operating System Files
 # =========================

@@ -26,7 +26,7 @@ function [pred_boxes, scores, box_deltas_, anchors_, scores_] = proposal_im_dete
     box_deltas = output_blobs{1};
     featuremap_size = [size(box_deltas, 2), size(box_deltas, 1)];
     % permute from [width, height, channel] to [channel, height, width], where channel is the
-        % fastest dimension
+    % fastest dimension
     box_deltas = permute(box_deltas, [3, 2, 1]);
     box_deltas = reshape(box_deltas, 4, [])';
     
